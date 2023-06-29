@@ -9,12 +9,14 @@ def random_word():
 def guess_word(guessing):
     final_guess = input("what do you think the word is?")
     if  final_guess == guessing:
-        print(f"Congrats!!!the correct word was {final_guess}")
+        print(f"Congrats!!!the correct word was {final_guess}! you did no typos and ur gud")
     else:
-        print(f"boo hoo you lost. the correct word was actually {guessing}. ")
-  
+        print(f"boo hoo you lost. the correct word was actually {guessing}. Maybe you did a typo or ur bad. git gud")
 
-
+def blank_spaces(fill_in_letters,slot,tell_letter):
+    for num in slot:
+        fill_in_letters = fill_in_letters[:num-1] + tell_letter + fill_in_letters[num:]
+    return fill_in_letters
 
 while True:
     dont_repeat_letters = []
@@ -26,6 +28,10 @@ while True:
     lives = 7
 
     print(f"the length of your word is {length_of_word} letters long")
+    blank = ""
+
+    for x in range(length_of_word):
+        blank += "_"
 
     while True:
 
@@ -45,22 +51,28 @@ while True:
         count = 1
         check = False
 
+        slot = []
+
         for ch in word:
             if guess == ch:
                 print(f"{guess} is CORRECT. {guess} is in the {count} slot")
+                slot.append(count)
                 check = True
             count += 1
+
+        blank = blank_spaces(blank,slot,guess)
+        print(blank)
 
         if check == False:
             lives -=1
             print(f"omg you lost a life! you have {lives} left")
-
+        print("--------------------------------------------\n")
         if lives == 0:
             print(f"ggs you lost. the word was {word}.")
             break
     play = input("do you want to play again?")
     if play == "no":
-        print(":( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(")
+        print(":( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :(:( :( :( :( :( :( :( :( :( :( :( :( :( :( :( WAHHH")
         break
     else:
         print("----------------------------\n")
